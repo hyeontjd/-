@@ -4,8 +4,7 @@
   "description": "온라인 서점 백엔드 구축",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon app"
   },
   "repository": {
     "type": "git",
@@ -30,6 +29,7 @@
     "express-rate-limit": "^6.6.0",
     "express-session": "^1.17.3",
     "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
     "mysql2": "^2.3.3",
     "nunjucks": "^3.2.3",
