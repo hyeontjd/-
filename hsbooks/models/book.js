@@ -3,15 +3,11 @@ const Sequelize = require('sequelize');
 module.exports = class Book extends Sequelize.Model {
   static init(sequelize) {
     return super.init({
-      category: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
-      },
       title: {
         type: Sequelize.STRING(100),
         allowNull:false,
       },
-      auther: {
+      author: {
         type: Sequelize.STRING(40),
         allowNull: true,
       },
@@ -19,7 +15,7 @@ module.exports = class Book extends Sequelize.Model {
         type: Sequelize.STRING(40),
         allowNull: true,
       },
-      publshed_date: {
+      published_date: {
         type: Sequelize.DATE,
         allowNull: true,
       },

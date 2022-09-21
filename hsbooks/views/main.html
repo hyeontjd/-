@@ -1,1 +1,42 @@
-<h1>HS Books</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/style.css">
+  <script src="/script.js"></script>
+  <title>{{title}}</title>
+</head>
+<body>
+  <div>
+    <h1>HS Books<a class="btn add">추가</a></h1>  
+    <hr>
+    <br>
+    <table border="1">
+      <th>이미지</th>
+      <th>제목</th>
+      <th>저자</th>
+      <th>출판사</th>
+      <th>발행일</th>
+      <th>가격</th>
+      <th>분류</th>
+      <th>수정</th>
+      <th>삭제</th>
+      {% for book in books %}
+        <tr>
+          <td><img src="{{book.img}}"><input type="hidden" value="{{book.id}}"></td>
+          <td>{{book.title}}</td>
+          <td>{{book.author}}</td>
+          <td>{{book.publisher}}</td>
+          <td>{{book.published_date}}</td>
+          <td>{{book.price}}</td>
+          <td>{{book.Category.category}}</td>
+          <td><input type="submit" class="btn" value="수정" formaction="#"></td>
+          <td><button class="btn" onclick="deleteBook({{book.id}})">삭제</button></td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+</body>
+</html>
