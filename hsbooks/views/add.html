@@ -1,0 +1,26 @@
+{% extends 'main.html' %}
+
+{% block content %}
+  <form action="/" method="post">
+    <input type="file" accept="image/*" name="img">
+    제목: <input type="text" name="title">
+    저자: <input type="text" name="author">
+    출판사: <input type="text" name="publisher">
+    발행일: <input type="date" name="published_date">
+    가격: <input type="text" name="price">원
+    분류: <select name="CategoryId">
+            {% for category in categories %}
+              <option value="{{category.id}}">{{category.category}}</option>
+            {% endfor %}
+          </select>
+    <button type="submit" class="btn">등록</button>
+  </form>
+  <br>
+{% endblock %}
+
+{% block script %}
+  <script>
+    document.getElementById('add').style.display = 'none';
+    document.getElementById('clear').style.display = 'block';
+  </script>
+{% endblock %}

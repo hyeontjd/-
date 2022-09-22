@@ -19,4 +19,10 @@ th {
 
 .add {
   float: right;
+  display: block;
+}
+
+.clear {
+  float: right;
+  display: none;
 }
