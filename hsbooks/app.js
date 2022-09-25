@@ -5,6 +5,7 @@ const path = require('path');
 const session = require('express-session');
 const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
+const methodOverride = require('method-override');
 
 dotenv.config();
 const { sequelize } = require('./models');
@@ -39,6 +40,7 @@ app.use(session({
     secure: false,
   },
 }));
+app.use(methodOverride('_method'));
 
 app.use('/', indexRouter);
 

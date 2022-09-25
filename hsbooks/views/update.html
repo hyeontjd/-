@@ -1,7 +1,26 @@
 {% extends 'main.html' %}
 
 {% block content %}
+  <form action="/{{ubook.id}}?_method=PUT" method="post">
+    <input type="file" accept="image/*" name="img" placeholder="{{ubook.img}}">
+    제목: <input type="text" name="title" placeholder="{{ubook.title}}">
+    저자: <input type="text" name="author" placeholder="{{ubook.author}}">
+    출판사: <input type="text" name="publisher" placeholder="{{ubook.publisher}}">
+    발행일: <input type="date" name="published_date" placeholder="{{ubook.published_date}}">
+    가격: <input type="text" name="price" placeholder="{{ubook.price}}">원
+    분류: <select name="CategoryId">
+            {% for category in categories %}
+              <option value="{{category.id}}">{{category.category}}</option>
+            {% endfor %}
+          </select>
+    <button type="submit" class="btn">수정</button>
+  </form>
+  <br>
+{% endblock %}
 
-
-
+{% block script %}
+  <script>
+    document.getElementById('add').style.display = 'none';
+    document.getElementById('clear').style.display = 'block';
+  </script>
 {% endblock %}

@@ -25,11 +25,10 @@
       <th>분류</th>
       <th>수정</th>
       <th>삭제</th>
-      <form action="/" method="put">
       {% for book in books %}
         <tr>
           <td>
-            <img src="http://localhost:5000{{book.img}}"><input type="hidden" value="{{book.id}}">
+            <img src="http://localhost:5000{{book.img}}">
           </td>
           <td>
             {{book.title}}
@@ -50,7 +49,7 @@
             {{book.Category.category}}
           </td>
           <td>
-            <input type="submit" class="btn" value="수정" formaction="#">
+            <a class="btn" href="/update/{{book.id}}">수정</a>
           </td>
           <td>
             <button class="btn" onclick="deleteBook({{book.id}})">삭제</button>

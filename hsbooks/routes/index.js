@@ -65,6 +65,47 @@ router.post('/', async (req, res, next) => {
   }
 });
 
+router.get('/update/:id', async (req, res) => {
+  try {
+    const books = await Book.findAll({
+      include: {
+        model: Category,
+      },
+      order: [['id', 'DESC']],
+    });
+    const categories = await Category.findAll({
+      order: [['id', 'ASC']],
+    });
+    const ubook = await Book.findOne({ where: {id: req.params.id }});
+    res.render('update', {
+      title: 'HSBooks',
+      books: books,
+      categories: categories,
+      ubook: ubook,
+    });
+  } catch (err) {
+    console.error(err);
+    next(err);
+  }
+});
+
+router.put('/:id', async (req, res, next) => {
+  try {
+    const ubook = await Book.update({
+      title: req.body.title,
+      author: req.body.author,
+      publisher: req.body.publisher,
+      published_date: req.body.published_date,
+      price: req.body.price,
+      CategoryId: req.body.CategoryId,
+    }, { where: {id: req.params.id } });
+    res.redirect('/');
+  } catch (err) {
+    console.error(err);
+    next(err);
+  }
+});
+
 router.delete('/:id', async (req, res, next) => {
   try {
     const dbook = await Book.destroy({ where: {id: req.params.id } });
