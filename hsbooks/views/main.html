@@ -10,13 +10,13 @@
 </head>
 <body>
   <div>
-    <h1>HS Books<a class="btn add" id="add" href="/add">추가</a><a class="btn clear" id="clear" href="/">완료</a></h1>  
+    <h1>HS Books<a class="btn add" id="domain" href="/domain">도메인등록</a><a class="btn add" id="add" href="/add">도서등록</a><a class="btn clear" id="clear" href="/">완료</a></h1>  
     <hr>
     <br>
     {% block content %}
     {% endblock %}
     <table border="1">
-      <th>이미지</th>
+      <!-- <th>이미지</th> -->
       <th>제목</th>
       <th>저자</th>
       <th>출판사</th>
@@ -27,9 +27,9 @@
       <th>삭제</th>
       {% for book in books %}
         <tr>
-          <td>
+          <!-- <td>
             <img src="http://localhost:5000{{book.img}}">
-          </td>
+          </td> -->
           <td>
             {{book.title}}
           </td>

@@ -1,36 +1,22 @@
 const express = require('express');
-const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
-const path = require('path');
+const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
-const methodOverride = require('method-override');
 
 dotenv.config();
-const { sequelize } = require('./models');
 const indexRouter = require('./routes');
-const open = require('./routes/open');
 
 const app = express();
-app.set('port', process.env.PORT || 5000);
+app.set('port', process.env.PORT || 5001);
 app.set('view engine', 'html');
 nunjucks.configure('views', {
   express: app,
   watch: true,
 });
-sequelize.sync({ force: false })
-  .then(() => {
-    console.log('데이터베이스 연결 성공');
-  })
-  .catch((err) => {
-    console.error(err);
-  });
 
 app.use(morgan('dev'));
-app.use(express.static(path.join(__dirname, '/public')));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(session({
   resave: false,
@@ -41,9 +27,7 @@ app.use(session({
     secure: false,
   },
 }));
-app.use(methodOverride('_method'));
 
-app.use('/open', open);
 app.use('/', indexRouter);
 
 app.use((req, res, next) => {

@@ -1,0 +1,29 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<form action="/domain" method="post">
+  도메인: <input type="text" id="host" name="host">
+  <button class="btn" type="submit">저장</button>
+</form>
+<table>
+  <tr>
+    <th>도메인 주소</th>
+    <th>클라이언트 비밀키</th>
+  </tr>
+  {% for domain in domains %}
+    <tr>
+      <td>{{domain.host}}</td>
+      <td>{{domain.clientSecret}}</td>
+    </tr>
+  {% endfor %}
+</table>
+<hr>
+<br>
+{% endblock %}
+
+{% block script %}
+  <script>
+    document.getElementById('domain').style.display = 'none';
+    document.getElementById('clear').style.display = 'block';
+  </script>
+{% endblock %}

@@ -1,6 +1,7 @@
 const express = require('express');
+const { v4: uuidv4 } = require('uuid');
 
-const { Book, Category } = require('../models');
+const { Book, Category, Domain } = require('../models');
 
 const router = express.Router();
 
@@ -110,6 +111,39 @@ router.delete('/:id', async (req, res, next) => {
   try {
     const dbook = await Book.destroy({ where: {id: req.params.id } });
     res.json('delete');
+  } catch (err) {
+    console.error(err);
+    next(err);
+  }
+});
+
+router.get('/domain', async (req, res) => {
+  try {
+    const books = await Book.findAll({
+      include: {
+        model: Category,
+      },
+      order: [['id', 'ASC']],
+    });
+    const domains = await Domain.findAll();
+    res.render('domain', {
+      title: 'HSBooks',
+      books: books,
+      domains: domains,
+    });
+  } catch (err) {
+    console.error(err);
+    next(err);
+  }
+});
+
+router.post('/domain', async (req, res, next) => {
+  try {
+    await Domain.create({
+      host: req.body.host,
+      clientSecret: uuidv4(),
+    });
+    res.redirect('/domain');
   } catch (err) {
     console.error(err);
     next(err);
