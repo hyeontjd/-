@@ -16,7 +16,7 @@ module.exports = class Book extends Sequelize.Model {
         allowNull: true,
       },
       published_date: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
         allowNull: true,
       },
       price: {
