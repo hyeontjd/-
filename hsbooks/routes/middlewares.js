@@ -6,7 +6,7 @@ exports.verifyToken = (req, res, next) => {
     req.decoded = jwt.verify(req.headers.authorization, process.env.JWT_SECRET);
     return next();
   } catch (error) {
-    if (error.name === 'TokenExpiredError') { // 유효기간 초과
+    if (error.name === 'TokenExpiredError') {
       return res.status(419).json({
         code: 419,
         message: '토큰이 만료되었습니다',
@@ -20,12 +20,12 @@ exports.verifyToken = (req, res, next) => {
 };
 
 exports.apiLimiter = new RateLimit({
-  windowMs: 60 * 1000, // 1분
+  windowMs: 60 * 1000,
   max: 10,
   delayMs: 0,
   handler(req, res) {
     res.status(this.statusCode).json({
-      code: this.statusCode, // 기본값 429
+      code: this.statusCode,
       message: '1분에 한 번만 요청할 수 있습니다.',
     });
   },
