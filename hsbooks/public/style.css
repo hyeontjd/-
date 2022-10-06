@@ -1,5 +1,25 @@
-div {
+/* div {
   width: 72%;
+} */
+.main {
+  width: 93.3%;
+}
+
+.inner {
+  display: flex;
+}
+
+.post {
+  margin-right: 25px;
+}
+
+.sidebar {
+  width: 20%;
+  border: 1px solid;
+}
+
+.sb-title {
+  text-align: center;
 }
 
 th {

@@ -29,7 +29,7 @@ module.exports = class Book extends Sequelize.Model {
       // },
     }, {
       sequelize,
-      timestamps: false,
+      timestamps: true,
       underscored: false,
       modelName: 'Book',
       tableName: 'books',
