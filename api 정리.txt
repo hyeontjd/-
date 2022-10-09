@@ -1,22 +1,40 @@
 locahost:5000
-'/' get 책의 정보 제공
-'/add' get 도서 추가에 필요한 정보 제공
-'/' post 도서 추가
-'/update/:id' get 도서 수정에 필요한 정보 제공
-'/:id' put 도서 수정
-'/:id' delete 도서 삭제
-'/domain' get 도메인에 대한 정보 제공
-'/domain' post 도메인 추가
+'/'
+- get 책의 정보 제공
+- post 도서 추가
+
+'/add'
+- get 도서 추가에 필요한 정보 제공
+
+'/:id'
+- get 도서 수정에 필요한 정보 제공
+- put 도서 수정
+- delete 도서 삭제
+
+'/domain'
+- get 도메인에 대한 정보 제공
+- post 도메인 추가
+
+----------------------------------------------------
 
 /open
-'/token' post api사용자에게 토큰 제공
-'/books' get api사용자에게 책 정보 제공
-'/categories' get api사용자에게 카테고리 정보 제공
-~~'/books/:category' get api사용자에게 카테고리에 따른 책 정보 제공~~
+'/token'
+- post api사용자에게 토큰 제공
 
+'/books'
+- get api사용자에게 책 정보 제공
+
+'/categories'
+- get api사용자에게 카테고리 정보 제공
+
+----------------------------------------------------
 
 localhost:5001
-'/' get 토큰키 발급
-'/books' get 책 정보 제공
-'/categories' get 카테고리 정보 제공
-'/books/:category' get 카테고리에 따른 책 정보 제공 - 안됨
+'/'
+- get 토큰키 발급
+
+'/books'
+- get 책 정보 제공
+
+'/categories'
+- get 카테고리 정보 제공
