@@ -1,25 +1,31 @@
 /* div {
   width: 72%;
 } */
-.main {
+
+/* .main {
   width: 93.3%;
-}
+} */
 
-.inner {
+/* .inner {
   display: flex;
-}
+} */
 
-.post {
+/* .post {
   margin-right: 25px;
-}
+} */
 
-.sidebar {
+/* .sidebar {
   width: 20%;
-  border: 1px solid;
-}
+  border-left: 1px solid;
+} */
 
-.sb-title {
+/* .sb-title {
   text-align: center;
+} */
+
+table {
+  margin: auto;
+  width: 75%;
 }
 
 th {

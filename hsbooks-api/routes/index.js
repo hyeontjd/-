@@ -25,6 +25,10 @@ const request = async (req, api) => {
   }
 };
 
+router.get('/', (req, res) => {
+  res.render('main', { key: process.env.CLIENT_SECRET });
+});
+
 router.get('/books', async (req, res, next) => {
   try {
     const result = await request(req, '/books');
@@ -45,18 +49,14 @@ router.get('/categories', async (req, res, next) => {
   }
 });
 
-router.get('/books/:category', async (req, res, next) => {
-  try {
-    const result = await request(req, '/books/${encodeURIComponent(req.params.category)}');
-    res.json(result.data);
-  } catch (err) {
-    console.error(err);
-    next(err);
-  }
-});
-
-router.get('/', (req, res) => {
-  res.render('main', { key: process.env.CLIENT_SECRET });
-});
+// router.get('/books/:category', async (req, res, next) => {
+//   try {
+//     const result = await request(req, '/books/${encodeURIComponent(req.params.category)}');
+//     res.json(result.data);
+//   } catch (err) {
+//     console.error(err);
+//     next(err);
+//   }
+// });
 
 module.exports = router;

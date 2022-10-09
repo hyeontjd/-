@@ -17,22 +17,22 @@ router.route('/')
       const categories = await Category.findAll({
         order: [['id', 'ASC']],
       });
-      const newbooks = await Book.findAll({
-        attributes: Book.title,
-        limit: 5,
-        order: [['id', 'DESC']],
-      });
-      const updbooks = await Book.findAll({
-        attributes: Book.title,
-        limit: 5,
-        order: [['updatedAt', 'DESC']],
-      });
+      // const newbooks = await Book.findAll({
+      //   attributes: Book.title,
+      //   limit: 5,
+      //   order: [['id', 'DESC']],
+      // });
+      // const updbooks = await Book.findAll({
+      //   attributes: Book.title,
+      //   limit: 5,
+      //   order: [['updatedAt', 'DESC']],
+      // });
       res.render('main', {
         title: 'HSBooks',
         books: books,
         categories: categories,
-        newbooks: newbooks,
-        updbooks: updbooks,
+        // newbooks: newbooks,
+        // updbooks: updbooks,
       });
     } catch (err) {
       console.error(err);
@@ -49,7 +49,8 @@ router.route('/')
         price: req.body.price,
         CategoryId: req.body.CategoryId,
       });
-      res.redirect('/');
+      res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+      res.write('<script charset="UTF-8">alert("추가되었습니다"); window.location="/";</script>');
     } catch (err) {
       console.error(err);
       next(err);
@@ -65,22 +66,22 @@ router.route('/')
           },
           order: [['id', 'ASC']],
         });
-        const newbooks = await Book.findAll({
-          attributes: Book.title,
-          limit: 5,
-          order: [['id', 'DESC']],
-        });
-        const updbooks = await Book.findAll({
-          attributes: Book.title,
-          limit: 5,
-          order: [['updatedAt', 'DESC']],
-        });
+        // const newbooks = await Book.findAll({
+        //   attributes: Book.title,
+        //   limit: 5,
+        //   order: [['id', 'DESC']],
+        // });
+        // const updbooks = await Book.findAll({
+        //   attributes: Book.title,
+        //   limit: 5,
+        //   order: [['updatedAt', 'DESC']],
+        // });
         const domains = await Domain.findAll();
         res.render('domain', {
           title: 'HSBooks',
           books: books,
-          newbooks: newbooks,
-          updbooks: updbooks,
+          // newbooks: newbooks,
+          // updbooks: updbooks,
           domains: domains,
         });
       } catch (err) {
@@ -94,7 +95,8 @@ router.route('/')
           host: req.body.host,
           clientSecret: uuidv4(),
         });
-        res.redirect('/domain');
+        res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+      res.write('<script charset="UTF-8">alert("추가되었습니다"); window.location="/domain";</script>');
       } catch (err) {
         console.error(err);
         next(err);
@@ -116,23 +118,23 @@ router.route('/:id')
       const ubook = await Book.findOne({
         where: {id: req.params.id
       }});
-      const newbooks = await Book.findAll({
-        attributes: Book.title,
-        limit: 5,
-        order: [['id', 'DESC']],
-      });
-      const updbooks = await Book.findAll({
-        attributes: Book.title,
-        limit: 5,
-        order: [['updatedAt', 'DESC']],
-      });
+      // const newbooks = await Book.findAll({
+      //   attributes: Book.title,
+      //   limit: 5,
+      //   order: [['id', 'DESC']],
+      // });
+      // const updbooks = await Book.findAll({
+      //   attributes: Book.title,
+      //   limit: 5,
+      //   order: [['updatedAt', 'DESC']],
+      // });
       res.render('update', {
         title: 'HSBooks',
         books: books,
         categories: categories,
         ubook: ubook,
-        newbooks: newbooks,
-        updbooks: updbooks,
+        // newbooks: newbooks,
+        // updbooks: updbooks,
       });
     } catch (err) {
       console.error(err);
@@ -149,7 +151,8 @@ router.route('/:id')
         price: req.body.price,
         CategoryId: req.body.CategoryId,
       }, { where: {id: req.params.id } });
-      res.redirect('/');
+      res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+      res.write('<script charset="UTF-8">alert("수정되었습니다"); window.location="/";</script>');
     } catch (err) {
       console.error(err);
       next(err);
@@ -158,7 +161,8 @@ router.route('/:id')
   .delete(async (req, res, next) => {
     try {
       const dbook = await Book.destroy({ where: {id: req.params.id } });
-      res.redirect('/');
+      res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+      res.write('<script charset="UTF-8">alert("삭제되었습니다"); window.location="/";</script>');
     } catch (err) {
       console.error(err);
       next(err);

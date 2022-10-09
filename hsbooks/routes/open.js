@@ -94,27 +94,27 @@ router.get('/categories', apiLimiter, verifyToken, (req, res) => {
     });
 });
 
-router.get('/books/:category', verifyToken, apiLimiter, async (req, res) => {
-  try {
-    const category = await Category.findOne({ where: { id: req.params.category } });
-    if (!category) {
-      return res.status(404).json({
-        code: 404,
-        message: '검색 결과가 없습니다',
-      });
-    }
-    const books = await Book.findAll({ where: { category: category.id } });
-    return res.json({
-      code: 200,
-      payload: books,
-    });
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({
-      code: 500,
-      message: '서버 에러',
-    });
-  }
-});
+// router.get('/books/:category', verifyToken, apiLimiter, async (req, res) => {
+//   try {
+//     const category = await Category.findOne({ where: { id: req.params.category } });
+//     if (!category) {
+//       return res.status(404).json({
+//         code: 404,
+//         message: '검색 결과가 없습니다',
+//       });
+//     }
+//     const books = await Book.findAll({ where: { category: category.id } });
+//     return res.json({
+//       code: 200,
+//       payload: books,
+//     });
+//   } catch (error) {
+//     console.error(error);
+//     return res.status(500).json({
+//       code: 500,
+//       message: '서버 에러',
+//     });
+//   }
+// });
 
 module.exports = router;
